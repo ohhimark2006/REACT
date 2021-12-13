@@ -466,6 +466,32 @@ ref[0] = 999; // wont change data
 
 ============================
 
+5) Promise API for Asynchronous functions
+
+function doTask() {
+	some async operations will return Promise
+}
+
+Promise is one which returns Future result [ could be resolved or rejected]
+
+doTask().then(
+	(data) => console.log(data), // resolved
+	(err) => console.log(err) // rejected
+)
+console.log("not blocked");
+
+
+==
+
+var result = doTask(); // non Promise based functions which are synchrounous
+console.log("blocked");
+
+===
+
+Aggregator Application like MMT , HolidayIQ 
+accumulate travel quotes from REdFox, Taj Vivanta, Ginger and give pricing
+
+
 
 
 
