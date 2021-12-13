@@ -492,6 +492,206 @@ Aggregator Application like MMT , HolidayIQ
 accumulate travel quotes from REdFox, Taj Vivanta, Ginger and give pricing
 
 
+===
+
+6) Async and Await
+	
+	Promise API leads to Callback hell
+
+	first().then(
+		() ==> second(),
+		() ==>
+	).then(
+		() ==> third(),
+		() ==>
+	).then(
+		() ==> fourth,
+		() ==>
+	)
+
+Promise based Fetch:
+fetch("https://jsonplaceholder.typicode.com/users/2")
+.then( response => response.json())
+.then(data => console.log(data));
+
+converted to async/await:
+
+async function doTask() {
+		let response = await fetch("https://jsonplaceholder.typicode.com/users/2");
+		let data = await response.json();
+		console.log(data);
+}
+
+doTask();
+
+=============
+
+7) String template literal ``
 
 
+var name = "Smith";
+
+var msg = `
+	Welcome ${name} to React Training,
+	JavaScript Stacks
+
+`
+
+
+===
+
+var msg = "Welcome " + name + " to React Training" 
+
+===
+
+8) Classes, interface and ES 6 module System ==> Webpack
+
+
+============================================================================================
+
+Node JS
+
+https://nodejs.org/en/download/
+
+What is nodeJS?
+Platform with V8 JS engine and libuv C++ libraries
+
+Where can i use NodeJS
+1) to build APIs [ RESTful web services , GraphQL] espiceially when used with NoSQL like MonogDB
+2) Realtime applications like ChatBot / Admin Dashboard
+3) Streaming API like OTT platform ==> Netflix / Prime / HotStar
+4) Building client side web applications [ we are using this feature]
+
+4.1) Write code in "TypeScript / LiveScript / CoffeeScript / DART / ES 6+" and transcompile/ transpile to ES5 or lower version
+which is understood by most of the browser
+
+TypeScript
+
+let name:string = "Banu"
+
+4.2) Code minify and uglify
+
+4.3) Bundle
+	a.js
+	b.js
+	c.js
+
+	Network call for index.html
+	network call to load "a.js"
+		<script src="a.js"></script>
+	network call to load "b.js"
+		<script src="b.js"></script>
+	network call to load "c.js"
+		<script src="c.js"></script>
+	network call to load "d.js"
+		<script src="d.js"></script>
+
+		==> bundle.js
+
+	<script src="bundle.js"></script>
+
+4.4) Static Code analysis [Linting]
+4.5) Testing ==> unit testing and E2E
+
+===============================================
+
+
+
+JavaScript Build Tools to be used on NodeJS platform
+1) Grunt
+Grunt is a JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting
+2) Gulp
+3) Rush
+4) Webpack
+
+=======================
+
+Webpack
+webpack is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, ...
+
+Most of the modern JavaSCript frameworks and librarires are using Webpack as the default bundler [ comming with scaffolding code generator]
+
+Angular:
+ng new sampleapp
+
+React:
+npx create-react-app sampleapp
+
+===============
+
+NPM / YARN ==> Node Package Manager
+* manage dependencies [ 3rd party moduels/libraries has to be download from repo]
+* publish the module to repo
+* run scripts
+
+==============
+
+Sample Webpack application:
+
+1)
+
+webpackexample> npm init -y
+
+creates package.json [ one per project]
+
+==> place where scripts and dependencies are configured like [pom.xml of maven]
+
+2) install dependencies/ modules for the project
+	some modules like "fs", "http", "crypto", "path" , are avaialble as default with nodejs
+
+	npm install webpack webpack-cli -D
+
+
+ -D we need the modules only for development stage and not in production
+
+ "devDependencies": {
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1"
+  }
+
+~5.65.0 ==> any version which has major version "5", minor and patch can be latest
+
+
+^5.65.0 ==> any latest version greater than "5"
+
+all downloaded dependencies will be in "node_modules" folder
+
+===
+
+other team members download the project:
+and execute:
+
+npm install
+
+==============================
+
+ "scripts": {
+    "dev" : "webpack --mode development",
+    "prod" : "webpack --mode production"
+  }
+
+  npm run dev
+
+  check dist/main.js
+
+  --
+
+  npm run prod
+
+  check dist/main.js  
+
+ ===============
+
+
+ src/index.html
+
+ HtmlWebpackPlugin
+ npm install html-webpack-plugin -D
+
+The HtmlWebpackPlugin simplifies creation of HTML files to serve your webpack bundles [main.js as of now]. This is especially useful for webpack bundles that include a hash in the filename which changes every compilation
+
+Automate:
+<script src="main.js"></script>
+
+======================
 
