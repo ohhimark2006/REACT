@@ -75,8 +75,6 @@ NashHorn ==> Oracle / Java
 ===========
 ECMA Version 5 ==> ES 5
 
-
-
 file.js
 
 var g = 100; // global variable
@@ -182,4 +180,292 @@ Commonly used HOF:
 5) limit
 6) skip
 7) flatMap
+
+ 
+
+HOF: function returning a function
+
+function greeting(name, msg) {
+	return msg + " " + name;
+}
+
+greeting("Raj", "Good morning");
+greeting("Rita", "Good morning");
+greeting("Rajeev", "Good morning");
+
+greeting("Raj", "Good Day");
+
+==
+
+function greeting(msg) {
+	return function(name) {
+		return msg + " " + name;
+	}
+}
+
+var morningGreet = greeting("Good morning");
+
+morningGreet("Sita"); // msg will be a part of Closure
+morningGreet("Harry"); // msg will be a part of Closure
+
+==
+
+If an outer function returns a function; the returned function has access to all the members of outer function
+==> refered as closure
+
+function adder(base) {
+	return function(no) {
+		return base + no;
+	}
+}
+
+var fiveAdder = adder(5); // base value is 5
+
+fiveAdder(2); // 7
+fiveAdder(3); // 8
+
+var tenAdder = adder(10); // base value is 10;
+
+tenAdder(3); // 13
+
+tenAdder(5); // 15
+
+
+==============
+
+HOF with CLosure for Memoize design pattern [ React.memo()]
+
+It comes from the functional language and is used to remember the result of the function
+
+
+getEmployee(5); JS ==> RESTAPI call ==> Spring Boot ==> MySQL ==> returnred value ==> json and send to client
+
+getEmployee(5); ==> should get from cache [ memoized]
+
+
+=========================================================
+
+
+OOP with JS
+
+Object has state and behaviour
+
+1) Constructor pattern
+
+function Product(name, price) {
+	this.name = name; // state of object
+	this.price = price; // state of object
+}
+
+// adding behaviour / action / methods
+
+Product.prototype.getName = function() {
+	return this.name;
+}
+
+Product.prototype.setName = function (n) {
+	this.name = n;
+}
+
+var p1  = new Product("iPhone", 98000.00); // p1 is a object of type Product
+var p2 = new Product("LG Nano Cell", 68000.00); // p2 is a object of type Product
+
+p1.getName() ; // iPhone
+
+p2.getName();
+
+getName(); // window will be the default context
+
+2) JSON {}
+JavaScript Object Notation
+
+var p = {}; // p is a object
+
+var p =  { "id":5, "name":"Samsung", "price":68000.00, "category" : "tv"};
+
+
+p.id ; // 5
+p.name; // Samsung
+
+
+3) 
+var obj = new Object();
+obj.name = "Peter";
+obj.age = 22;
+
+=======================
+
+var book = {
+	price: 560.00
+}
+
+var p = {
+	"name": "iPhone",
+	"price" : 98000.00,
+	getPrice: function() {
+		return this.price;
+	}
+}
+
+p.getPrice();
+
+var ref = p.getPrice; // get function definition but context is lost
+
+ref(); // undefined
+
+var cref = p.getPrice.bind(p); // 98000
+
+var nref = p.getPrice.bind(book); // 560
+
+=============================================
+
+ES 2015 ==> ES 6 version ==> ECMA JavaScript Version
+
+
+https://caniuse.com/
+
+Write code in ES 6 or ES Next then transcompile to ES5 or lower version 
+
+Babel
+Babel is a free and open-source JavaScript transcompiler that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript 
+
+Traceur is a JavaScript.next-to-JavaScript-of-today compiler that allows you to use features from the future today.
+
+======================
+
+Features of ECMA 2015 / ES 6
+
+1) Block level scope [ let and const]
+
+
+var g = 100; // global variable
+const PI = 3.14159 ; // constant
+
+function doTask() {
+	var a = 10; // local variable
+	if(g > a) {
+		let b = 20; // not hoisted to function scope
+		c = 30;
+	}
+	console.log(g, a, b, c); // b is not visible
+}
+
+doTask();
+
+console.log(g, a, b, c);
+
+===
+
+2) Arrow Functions
+
+let add = (x,y) => x + y;
+
+same as 
+
+function add(x,y) {
+	return x + y;
+}
+
+Arrow Functions uses the calling context 
+Don;t use arrow functions as object methods
+
+
+
+var p = {
+	"name": "iPhone",
+	"price" : 98000.00,
+	getPrice: () => {
+		return this.price;
+	}
+}
+
+p.getPrice(); // undefined because called in global context
+
+======
+
+
+
+var p = {
+	"name": "iPhone",
+	"price" : 98000.00,
+	getPrice: () => {
+		return this.price;
+	},
+	doTask: function () {
+		setTimeout(() => {
+			console.log(this.price); // picks "p" as context
+		}, 100);
+	}
+}
+
+p.getPrice(); // undefined because called in global context; window
+
+
+p.doTask();
+
+======================
+
+3) Destructuring and spread operators [...]
+
+
+var p =  { "id":5, "name":"Samsung", "price":68000.00, "category" : "tv"};
+
+
+var {name, price} = p;
+
+console.log(name);
+console.log(price);
+
+or in ES 5
+console.log(p.name);
+console.log(p.price);
+
+---
+
+var colors = ["red", "green", "blue", "orange"];
+
+var [r,g,...others] = colors;
+
+
+console.log(r) ; // red
+
+console.log(others);  ["blue", "orange"]
+
+ES 5:
+console.log(colors[0]);
+console.log(colors[1]);
+
+=========
+
+4) Clone
+
+
+var p =  { "id":5, "name":"Samsung", "price":68000.00, "category" : "tv"};
+
+var ref = p; // refernece and not a clone
+
+ref.name = "Oppo";
+
+p.name; // Oppo
+
+
+var cpy = {...p}; // clone
+cpy.price = 9999;
+
+===
+
+var data = [6,3,2];
+
+var ref = data; // reference and not a copy
+
+ref[0] = 999; // will change data also
+
+var ref = [...data]; // clone of array
+ref[0] = 999; // wont change data
+
+
+============================
+
+
+
 

@@ -15,7 +15,6 @@ function map(elems, transformFn) {
 }
 
 // HOF
-
 function filter(elems, predicate) {
     var result = [];
     forEach(elems, function(elem) {
