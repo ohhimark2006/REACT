@@ -713,5 +713,97 @@ module.exports = {
 
 ====
 
+src / style.css
+
+npm i css-loader style-loader -D
+
+const HtmlWebPackPlugin = require('html-webpack-plugin'); // we installed
+const path = require('path'); // builtin nodejs module
+
+module.exports = {
+    module: {
+        rules: [
+            {
+                test :/\.css$/,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+    },
+    plugins: [
+        new HtmlWebPackPlugin({
+            template: path.resolve(__dirname, "src", "index.html")
+        })
+    ]
+}
 
 
+==
+
+index.js
+
+import "./style.css"
+
+===
+ 
+=====================
+
+npm i webpack-dev-server -D
+
+webpack-dev-server can be used to quickly develop an application
+
+Real time: we build the assets [ html / bundle / css ] and deploy it
+on web server ==> Apache / IIS / NginX
+
+ "start": "webpack serve --open --mode production"
+
+ npm start
+==========
+
+using ES6 in webpack projects
+
+npm i -D @babel/core babel-loader @babel/preset-env
+
+
+babel-loader ==> similar to css-loader but loads files with "js" extension
+
+@babel/core ==> transpiler ==> transcompile 
+
+@babel/preset-env ==> Polyfills
+
+ES 6 module system:
+export, import
+
+CommonJS module System:
+
+lib.js
+module.exports = function add() {}
+
+require('../lib');
+
+
+babel.config.json ==> babel config 
+or
+.babelrc
+
+===
+
+Dependency required in Production also:
+
+npm i lodash
+
+===================
+
+main.js file bloats ==> leading to FCP issues
+
+===
+
+optimization:
+1) create multiple chunks
+	main.js [ all my code here]
+	bundle.js [ any module from node_modules]
+	...
+2) lazy loading
+	Product module
+	Cart module
+	Customer Module
+	payment module
