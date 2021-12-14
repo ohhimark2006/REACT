@@ -1142,3 +1142,32 @@ findByXXX() ==> component created by Promise API
 
 npm test
 
+===============
+
+E2E ==> end to end testing needs application to be running
+
+
+1) package.json
+"e2e": "cypress open"
+
+2) cypress.json
+
+3) e2e folder
+	filter.spec.js
+	delete.spec.js
+
+$ npm start
+$ npm run e2e
+
+===============
+
+$ npx create-react-app phoneapp
+
+Resume @ 4:00
+
+
+
+
+
+
+
