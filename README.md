@@ -807,3 +807,194 @@ optimization:
 	Cart module
 	Customer Module
 	payment module
+
+==============
+
+Day 1: HOF, ES 6, NodeJS and Webpack
+
+Day 2
+
+Server Side Rendering and Client Side Rendering
+
+SSR templates
+1) PHP
+2) JSP / Thymeleaf
+3) JS ==> EJS/ Pug / Jade / Handlebars / Mustache
+4) ASP / ASP.NET
+
+CSR:
+
+JavaScript templates:
+1) jQuery
+2) Handlebars #list / Mustache {{ name }}
+3) Frameworks: Backbone, Angular , CanJS
+4) View Libraries : REACT
+
+SPA ==> Single Page Application ==> one HTML but many views
+Challenges in building SPA:
+1) data binding ==> one way binding or two way binding
+2) Dependency management
+3) Router 
+	index.html
+
+	http://cisco.com/products
+	http://cisco.com/customers
+	http://cisco.com/locations
+
+	http://amazon.com/mobiles/
+	http://amazon.com/mobiles/iPhone12
+	http://amazon.com/mobiles/Pixel4
+	http://amazon.com/tv
+	http://amazon.com/tv/SonyBravia
+
+	http://amazon.com/cart
+
+	Advantanges:
+	a) Navigation between views instead of pages
+	b) Bookmark
+	c) Security
+	d) Lazy Loading
+		mobiles.chunk.js
+		tv.chunk.js
+		cart.chunk.js
+
+========
+
+BackboneJS ==> MVC Framework
+
+Model ==> data
+View ==> Presentation
+Controller => Locus between View and Model
+
+========
+
+Angular ==> MVC Framework [ MVVP]
+
+Angular 1.x ==> 1.6
+Angular 2.x ==> 11 version
+	==> Component, Directives, Service, Guards, Routers, Interceptor, Http ..
+
+==================================
+
+REACT ==> View Library
+	Component , Routers
+
+	3rd Party:
+	State Management: Redux / Mobx / flux
+	API calls: fetch / Axios / Request
+
+==============================================
+React in CodePen:
+
+Babel as Preprocessor
+
+Libraries:
+https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js
+
+https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js
+
+===
+
+let Welcome = React.createElement("h1", {style:{'color': 'red'}}, "Welcome to React");
+
+console.log(Welcome);
+
+ReactDOM.render(Welcome, document.getElementById("root"));
+
+==
+
+Document Object Model
+
+
+==================================
+
+Reconcillation ==> ReactDOM.render()
+
+Runs Diff algorithm on VDOM
+
+const diffs = [
+	{
+		newnode: { /* new version of data */},
+		oldnode: { / * orignal content * /},
+		index: 2
+	},
+	{
+		newnode: { /* new content */},
+		index: 6
+	}
+]
+
+
+
+===========
+
+Functional Components
+
+function Welcome() {
+  return <div>
+        	<h1>Welcome to React!!!</h1>
+         	<h3>Virtual ClassRoom sessions </h3>
+         </div>
+}
+
+Functional components returns JSX ==> JavaScript XML
+
+React.createElement("div", null , React.createElement("h1", null, "Welcome to React!!1"));
+
+===
+props ==> parent passing data to child
+
+function Welcome(props) {
+  return <div>
+        <h1>{props.title}</h1>
+         <h3>{props.where}</h3>
+    </div>
+}
+ 
+ReactDOM.render(<Welcome title="Welcome to React" where="Virtual ClassRoom" />, document.getElementById("root"));
+
+
+===
+Deconstructing props:
+
+function Welcome({title, where}) {
+  return <div>
+          <h1>{title}</h1>
+          <h3>{where}</h3>
+    </div>
+}
+
+===
+
+var data = [
+    		{"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"},
+    		{"id":2,"name":"Onida","price":4444.44,"category" : "tv"},
+    		{"id":3,"name":"OnePlus 6","price":98444.44,"category" : "mobile"},
+    		{"id":4,"name":"HDMI connector","price":2444.00,"category" : "computer"},
+      		{"id":5,"name":"Samsung","price":68000.00,"category" : "tv"}
+      	];
+
+
+function ProductList({title, products}) {
+	return <div>
+		<h1>{title} </h1>
+		{
+			products.map( product => <Product product={product} />)
+		}
+	</div>
+}
+
+function Product({product}) {
+	return <div>
+			<h2>{product.name} </h2>
+			<h3> {product.price}, {product.category} </h3>
+			<hr/>
+		</div>
+}
+
+
+ReactDOM.render(<ProductList title="Product List" products={data} />, document.getElementById("root"));
+
+=====
+
+
