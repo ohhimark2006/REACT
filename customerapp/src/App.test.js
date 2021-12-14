@@ -21,11 +21,11 @@ it("delete a customer", () => {
   expect(btns.length).toBe(5);
 });
 
-it("filter customers", () => {
-  render(<App />);
-  let txtbox = screen.queryByPlaceholderText("search by name");
-  fireEvent.change(txtbox, {"target": {"value": "Geller"}});
-  screen.debug();
-  let btns = screen.getAllByRole("button");
-  expect(btns.length).toBe(2);
-});
+// it("filter customers", () => {
+//   render(<App />);
+//   let txtbox = screen.queryByPlaceholderText("search by name");
+//   fireEvent.change(txtbox, {"target": {"value": "Geller"}});
+ 
+//   let btns = screen.getAllByRole("button");
+//   expect(btns.length).toBe(2);
+// });
