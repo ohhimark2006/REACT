@@ -16,9 +16,12 @@ describe("testing customer row", () => {
 
     it("render customer row", () => {
         render(<CustomerRow delEvent ={(id) => callback(id)} customer={c} key ={c.id} />);
-        let elem = screen.getByText(/raj/i);
-        // screen.debug();
+        let elem = screen.getByText(/Raj/i);
+        screen.debug();
         expect(elem).toBeInTheDocument();
+
+        // let {container} = render(<CustomerRow delEvent ={(id) => callback(id)} customer={c} key ={c.id} />);
+        // container.querySelector("div")
     });
 
     it("delete customer row", () => {
