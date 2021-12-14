@@ -996,5 +996,68 @@ function Product({product}) {
 ReactDOM.render(<ProductList title="Product List" products={data} />, document.getElementById("root"));
 
 =====
+older version:
+
+npm i create-react-app -g
+
+create-react-app customerapp
+
+Now:
+
+npx create-react-app customerapp
+
+=================
 
 
+React class components
+1) state
+2) behaviour
+
+class Welcome extends React.Component {
+	state = {
+		count : 0
+	}
+
+	constructor(props) {
+		super(props);
+		// initialization
+	}
+
+	increment() {
+		logic to increment count
+	}
+
+	render() {
+		return <div>
+ 			...
+		</div>
+	}
+}
+
+
+What you return from functional component should be part of render()
+
+=======================
+
+Thinking in React
+
+main.chunk.js ==> our components
+
+vendor.chunk.js ==> node_modules 
+
+bundle.js ==> react compiler, libraries
+
+
+ delEvent ={this.deleteCustomer.bind(this)} 
+
+ or
+
+  delEvent ={(id) => this.deleteCustomer(id)}
+
+  Don't use 
+
+  delEvent ={this.deleteCustomer}  /* context is lost "this" is undefined
+
+ ================
+
+ 
