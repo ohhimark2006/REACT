@@ -40,9 +40,20 @@ export default class CustomerList extends Component {
         return (
             <div>
                 {
-                    this.state.customers.map(customer => <CustomerRow customer={customer} key={customer.id}/>)
+                    this.state.customers.map(customer => <CustomerRow 
+                            delEvent ={(id) => this.deleteCustomer(id)} 
+                            customer={customer} key={customer.id}/>)
                 }
             </div>
         )
+    }
+
+    deleteCustomer(id) {
+        let custs = this.state.customers.filter(c => c.id !== id);
+        // state is immutable
+        // this.state.customers = custs;
+        this.setState({
+            customers: custs
+        }, () => console.log(`customer ${id} deleted`));
     }
 }
