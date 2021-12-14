@@ -1,6 +1,5 @@
 import './App.css';
 import CustomerList from './components/CustomerList';
-import Filter from './components/Filter';
 
 function App() {
   return (

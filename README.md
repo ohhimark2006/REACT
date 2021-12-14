@@ -1060,4 +1060,85 @@ bundle.js ==> react compiler, libraries
 
  ================
 
+ customerapp> npm i cypress -D
+
+ Resume @ 2:00
+
+=============================
+
  
+Unit testing JavaScript testing libraries:
+1) Mocha 
+2) Jasmine
+3) Jest
+
+Angular ==> Angular Test Bed is built using Jasmine
+
+React Testing Library ==> built on JEST
+
+==========
+
+E2E testing
+1) Cypress
+2) Protroctor ==> Angular 
+3) Selenium
+
+===============
+
+
+React Testing Library
+
+AAA ==> Assemble Action Assert
+// Test suite
+describe("test suite for customer list", () => {
+
+	// test spec
+	it("delete customer", () => {
+		// perform button click
+		// assert that the customer is deleted
+	});
+
+	// test spec
+	it("filter customers", () => {
+		// perform change on text in  textbox
+		// assert customers are deleted
+	});
+
+	// test spec
+	test("render customers", () => {
+
+	})
+})
+
+====
+
+RTL utility methods to access components/dom elements
+
+1) getByText(/Customer Application/i)
+
+	<h1>Customer Application</h1>
+
+	gets <h1> tag which contains "Customer Application"
+
+2) getByPlaceHolderText("search by name")
+  <input type="text" placeholder="search by name" onChange={(e) => props.filterEvent(e.target.value)}/>
+
+
+3) getByRole("button")
+	gets first occurence of <button>
+
+fetching Multiple elements:
+getAllByRole("..")
+getAllByPlaceHolderText(..)
+getAllByText();
+
+======
+
+getByXXX() ==> throws exception if not found
+queryByXXX() ==> returns null if not found
+findByXXX() ==> component created by Promise API
+
+===
+
+npm test
+
