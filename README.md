@@ -1409,11 +1409,85 @@ npx json-server --watch data.json --port 1234
 
 Make changes in Context.js to fetch from json-server
 
-================================================
+====================================================
 
+Whenever state/props changes the component re-renders, which triggers re-rendering of all its 
+child components
 
+class Child extends React.Component {
+	render() {
+		console.log("child renders");
+		return <h1> Child : {this.props.name} </h1>
+	}
+}
 
+class Parent extends React.Component {
+	state = {
+		count : 0,
+		name : "Banu"
+	}
+
+	increment() {
+		this.setState({
+			count : this.state.count +1
+		})
+	}
+
+	render() {
+		console.log("parent renders");
+		return <>
+			<h1> Count : {this.state.count} </h1>
+      <button onClick={() => this.increment()}>Click</button>
+			<Child name={this.state.name} />
+		</>
+	}
+
+}
  
+ReactDOM.render(<Parent/>, document.getElementById("root"));
+
+==
+
+Solution to avoid re-render of child components:
+use Lifecycle method shouldComponentUpdate()
+
+
+class Child extends React.Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    // console.log(this.props, nextProps);
+    return JSON.stringify(this.props) !== JSON.stringify(nextProps);
+  }
+  
+	render() {
+		console.log("child renders");
+		return <h1> Child : {this.props.name} </h1>
+	}
+}
+
+class Parent extends React.Component {
+	state = {
+		count : 0,
+		name : "Banu"
+	}
+
+	increment() {
+		this.setState({
+			count : this.state.count +1
+		})
+	}
+
+	render() {
+		console.log("parent renders");
+		return <>
+			<h1> Count : {this.state.count} </h1>
+      <button onClick={() => this.increment()}>Click</button>
+			<Child name={this.state.name} />
+		</>
+	}
+
+}
+ 
+ReactDOM.render(<Parent/>, document.getElementById("root"));
 
 
 
