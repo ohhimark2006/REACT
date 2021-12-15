@@ -1163,7 +1163,43 @@ $ npm run e2e
 
 $ npx create-react-app phoneapp
 
-Resume @ 4:00
+=====================================
+
+Features:
+1) RWD ==> Response Web Design ==> view adopts to different devices and resolution
+	Use ==> bootstrap css framework
+
+2) Fontawesome ==> for icons
+
+3) Router
+	http://localhost:3000/
+	http://localhost:3000/products
+	http://localhost:3000/cart
+	http://localhost:3000/details/4
+	http://localhost:3000/dgfdfg ==> Default
+
+	Lazy Loading of component
+
+4) Context
+
+5) REST API call to server
+
+=============
+Steps:
+1) npm i bootstrap react-router-dom
+2) include fontawesome in index.html
+3) The following components are required:
+3.1) Navbar
+3.2) ProductList
+3.3) Product
+3.4) Details
+3.5) Default
+3.6) Cart
+3.7) CartList
+
+
+All the components will be a part of main.chunk.js ==> leads to FCP issue
+
 
 
 

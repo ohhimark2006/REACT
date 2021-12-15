@@ -1,15 +1,20 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import React, {Suspense} from 'react';
+
 import './App.css';
 import ProductList from './components/ProductList';
-import Cart from './components/Cart';
 import Details from './components/Details';
 import Default from './components/Default';
 import Navbar from './components/Navbar';
+
+const Cart = React.lazy(() =>  import('./components/Cart'));
+
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <Suspense fallback={<h1>Loading....</h1>}>
       <BrowserRouter>
         <Routes>
           <Route path="/products" element={<ProductList />} />
@@ -19,6 +24,7 @@ function App() {
           <Route path="*" element={<Default />} />
         </Routes>
       </BrowserRouter>
+      </Suspense>
     </div>
   );
 }
