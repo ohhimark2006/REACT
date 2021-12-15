@@ -8,7 +8,8 @@ const ProductContext = React.createContext();
 class ProductProvider extends React.Component {
     state = {
         products : [],
-        cart: []
+        cart: [],
+        detailProduct: {}
     }   
 
     componentDidMount() {
@@ -33,9 +34,8 @@ class ProductProvider extends React.Component {
             console.log("order placed!!!");
         })
     }
+ 
 
-
-    
     increment = (id) => {
 
     }
@@ -53,7 +53,11 @@ class ProductProvider extends React.Component {
     }
 
     getDetails = (id) => {
-
+        axios.get("http://localhost:1234/products/" + id). then(response => {
+            this.setState({
+                detailProduct: response.data
+            })
+        })
     }
 
     render() {

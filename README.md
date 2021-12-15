@@ -1393,6 +1393,8 @@ phoneapp> npm install axios
 
 ================
 
+npx create-react-app phoneapp
+
 RESTful Web Server
 
 FAke RESTAPI
@@ -1405,7 +1407,14 @@ http://server/orders
 
 npx json-server --watch data.json --port 1234
 
-=============================
+Make changes in Context.js to fetch from json-server
+
+================================================
+
+
+
+ 
+
 
 
 
