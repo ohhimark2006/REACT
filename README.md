@@ -1201,6 +1201,136 @@ Steps:
 All the components will be a part of main.chunk.js ==> leads to FCP issue
 
 
+Cart Components should be lazy loaded ==> this will be loaded as different "js" file not with "main.chunk.js"
+
+phoneapp> npm i styled-components
+
+styled-components is the result of wondering how we could enhance CSS for styling React component system
+
+=============
+
+React Component Life Cycle methods
+
+===================
+
+
+var PersonContext = React.createContext();
+
+class PersonProvider extends React.Component {
+  state = {
+    name : 'Smith',
+    email : "",
+     update : this.update.bind(this)
+  };
+  
+  update(email) {
+    this.setState({
+        "email": email
+    });
+   }
+  
+  render() {
+    return <PersonContext.Provider value={this.state}>
+        {this.props.children}
+      </PersonContext.Provider>
+  }
+}
+
+class App extends React.Component{
+  render() {
+    return <PersonProvider>
+        <First />
+       </PersonProvider>
+  }
+}
+
+class First extends React.Component {
+  render() {
+     return <Second/>
+  }
+}
+
+class Second extends React.Component {
+  render() {
+    return <PersonContext.Consumer>
+            {
+              value => { 
+                return <React.Fragment>
+                  <h1> {value.name} {value.email}</h1>  
+                  <button onClick={() => value.update('smith@adobe.com')}>Change</button>
+                  </React.Fragment>
+              }
+      }
+      </PersonContext.Consumer>
+  }
+}
+
+ReactDOM.render(<App/>, document.getElementById("root"))
+
+
+===========
+
+function App() {
+	return <div>
+			{this.props.children}
+	</div>
+}
+
+
+<App>
+	<A/>
+	<B/>
+</App>
+
+<App>
+	<C/>
+	<D/>
+	<E/>
+</App>
+
+
+==========================
+
+Root element is essential:
+function App() {
+	return <div>
+			<h1> Hello </h1>
+			<h2> World </h2>
+		</div>
+}
+
+ERROR:
+function App() {
+	return  
+		<h1> Hello </h1>
+		<h2> World </h2>
+}
+
+React.Fragment
+function App() {
+	return <React.Fragment>
+			<h1> Hello </h1>
+			<h2> World </h2>
+		</React.Fragment>
+}
+
+Shortcut for React.Fragment
+
+function App() {
+	return <>
+			<h1> Hello </h1>
+			<h2> World </h2>
+		</>
+}
+
+
+===========================
+
+download share.zip file from "github" and extract it
+
+
+1) copy "img" folder into "phoneapp/public" folder
+
 
 
 

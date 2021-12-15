@@ -13,9 +13,9 @@ const Cart = React.lazy(() =>  import('./components/Cart'));
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Suspense fallback={<h1>Loading....</h1>}>
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path="/products" element={<ProductList />} />
           <Route path="/cart" element={<Cart />} />

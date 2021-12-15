@@ -8,7 +8,7 @@ class Navbar extends Component {
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
                 <Link to="/">
                     <i className="navbar-brand">
-                        CISCO
+                        Rakuten
                     </i>
                 </Link>
                 <ul className="navbar-nav align-items-center">
