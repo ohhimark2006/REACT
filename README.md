@@ -1449,7 +1449,7 @@ ReactDOM.render(<Parent/>, document.getElementById("root"));
 ==
 
 Solution to avoid re-render of child components:
-use Lifecycle method shouldComponentUpdate()
+1) use Lifecycle method shouldComponentUpdate()
 
 
 class Child extends React.Component {
@@ -1489,11 +1489,88 @@ class Parent extends React.Component {
  
 ReactDOM.render(<Parent/>, document.getElementById("root"));
 
+2) Make component PureComponent ==> only if props are simple/ primitive and not nested objects
+
+class Child extends React.PureComponent {
+ 	render() {
+		console.log("child renders");
+		return <h1> Child : {this.props.name} </h1>
+	}
+}
 
 
+{
+	"customer" : {
+		"address" : {"street" : "1 A 5"}
+	},
+	"email" : {
+
+	}
+}
+
+===
+
+How to avoid re-rendering of functional based component
+
+function Child(props) {
+   	console.log("child renders");
+		return <h1> Child : {props.name} </h1>
+}
 
 
+Solution: use Memoize pattern
+
+const MemoChild = React.memo(Child);
+
+===
+
+function Child(props) {
+   	console.log("child renders");
+		return <h1> Child : {props.name} </h1>
+}
+
+const MemoChild = React.memo(Child); // HOC ==> props will be closure
+
+class Parent extends React.Component {
+	state = {
+		count : 0,
+		name : "Banu"
+	}
+
+	increment() {
+		this.setState({
+			count : this.state.count +1
+		})
+	}
+
+	render() {
+		console.log("parent renders");
+		return <>
+			<h1> Count : {this.state.count} </h1>
+      <button onClick={() => this.increment()}>Click</button>
+			<MemoChild name={this.state.name} />
+		</>
+	}
+
+}
+ 
+ReactDOM.render(<Parent/>, document.getElementById("root"));
 
 
+==========
 
 
+function checkProps(props, nextProps) {
+  console.log(props);
+  console.log(nextProps);
+  return true;
+}
+
+function Child(props) {
+   	console.log("child renders");
+		return <h1> Child : {props.name} </h1>
+}
+
+const MemoChild = React.memo(Child, checkProps);
+
+=======================================
