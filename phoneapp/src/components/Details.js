@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
+import {useParams} from 'react-router-dom';
 
-export default class Details extends Component {
-    render() {
-        return (
-            <div>
-                 <h1>Details!!!</h1>
-            </div>
-        )
-    }
+export default function Details (){
+    let {id} = useParams();
+    return <h1> Details of {id} </h1>
 }

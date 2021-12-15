@@ -21,6 +21,9 @@ class ProductProvider extends React.Component {
         })
     }
 
+    increment = (id) => {
+        
+    }
     addToCart = (id) =>{
         let prd = this.state.products.filter(p => p.id === id)[0];
         prd.inCart = true;
@@ -34,8 +37,14 @@ class ProductProvider extends React.Component {
         })
     }
 
+    getDetails = (id) => {
+
+    }
+
     render() {
-        return <ProductContext.Provider value={{...this.state, addToCart: this.addToCart}}>
+        return <ProductContext.Provider value={{...this.state, 
+                addToCart: this.addToCart, 
+                getDetails: this.getDetails}}>
             {this.props.children}
         </ProductContext.Provider>
     }

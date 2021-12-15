@@ -1328,7 +1328,6 @@ function App() {
 
 download share.zip file from "github" and extract it
 
-
 1) copy "img" folder into "phoneapp/public" folder
 2) overwrite "App.css" 
 3) copy "data.js" into "src" folder
@@ -1346,8 +1345,21 @@ Modified:
 Navbar.js 
 App.js
 
+in index.js
+import 'bootstrap/dist/css/bootstrap.min.css';
 
+=============================
+index.js
+Context.js
+ProductList.js
+Product.js
 
+===
+
+Context.js
+Product.js
+
+Look into React Dev tools Component ==> Context.Provider
 
 
 
