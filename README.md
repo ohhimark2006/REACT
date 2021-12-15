@@ -1330,7 +1330,21 @@ download share.zip file from "github" and extract it
 
 
 1) copy "img" folder into "phoneapp/public" folder
+2) overwrite "App.css" 
+3) copy "data.js" into "src" folder
+4) copy "Button.js" into "components" folder
 
+ <Link to="/cart" className="ml-auto">  </Link> ==> invoking a Route
+
+ instead of 
+
+ <a href="cart"></a> Server side redirection
+
+
+=============
+Modified:
+Navbar.js 
+App.js
 
 
 
