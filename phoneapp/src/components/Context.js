@@ -1,4 +1,5 @@
-import {storeProducts} from '../data'; // later with REST api calls
+// import {storeProducts} from '../data'; // later with REST api calls
+import axios from 'axios';
 
 import React from 'react';
 
@@ -12,17 +13,31 @@ class ProductProvider extends React.Component {
 
     componentDidMount() {
         let prds = [];
-        storeProducts.forEach( p => {
-            prds.push({...p});
-        });
+        // storeProducts.forEach( p => {
+        //     prds.push({...p});
+        // });
 
-        this.setState({
-            products: prds
+        // this.setState({
+        //     products: prds
+        // })
+
+        axios.get("http://localhost:1234/products"). then(response => {
+            this.setState({
+                products: response.data
+            })
         })
     }
 
+    checkout = () => {
+        axios.post("http://localhost:1234/orders", this.state.cart).then(res => {
+            console.log("order placed!!!");
+        })
+    }
+
+
+    
     increment = (id) => {
-        
+
     }
     addToCart = (id) =>{
         let prd = this.state.products.filter(p => p.id === id)[0];

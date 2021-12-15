@@ -1361,5 +1361,56 @@ Product.js
 
 Look into React Dev tools Component ==> Context.Provider
 
+import React, { Component } from 'react'
+import {useParams} from 'react-router-dom';
+
+export default function Details (){
+    let {id} = useParams();
+    return <h1> Details of {id} </h1>
+}
+
+In Details call getDetails(id) {} in Context.js to Return the product info
+
+and display
+Title
+image
+Price
+Company
+
+===
+
+Context.js
+Cart.js
+CartList.js
+
+Task: complete "+" in CartList
+
+================================
+
+axios:
+Promise based HTTP client for the browser and node.js
+phoneapp> npm install axios
+
+================
+
+RESTful Web Server
+
+FAke RESTAPI
+JSON Server Node.js CI
+Get a full fake REST API with zero coding in less than 30 seconds
+
+http://server/products
+http://server/customers
+http://server/orders
+
+npx json-server --watch data.json --port 1234
+
+=============================
+
+
+
+
+
+
 
 
