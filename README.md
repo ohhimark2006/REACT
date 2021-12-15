@@ -1716,10 +1716,187 @@ class App extends React.Component {
 
 ReactDOM.render(<App/>, document.getElementById("root"));
 
-=================
+===================================================================
 
 React Hooks
 
-Resume @ 3: 50
+Hooks are a new addition in React 16.8. 
+They let you use state and other React features without writing a class.
+
+Class Components:
+* state
+* behaviour
+* life-cycle methods
+
+
+class App extends Component {
+	state = {
+		count: 0,
+		user: ""
+	}
+
+	setCount(cnt) {
+		this.setState({
+			count: cnt
+		})
+	}
+
+	setUser(usr) {
+		this.setState({
+			user: usr
+		})
+	}
+
+	render() {...}
+}
+
+1) useState
+
+function App() {
+	let [count, setCount] = React.useState(0);
+	let [user, setUser] = React.useState("");
+
+	return (
+		<div>
+			Count {count} User {user} <br />
+			<button onClick={() => setCount(count + 1)}>Click</button>
+		</div>
+	)
+}
+
+
+ReactDOM.render(<App/>, document.getElementById("root"));
+
+=====
+
+2) useReducer()
+
+An alternative to useState
+useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one
+
+
+cart: []
+
+Perform mutaion to state based on action
+ADD_TO_CART
+REMOVE_FROM_CART
+REMOVE_ALL
+
+
+let initialState = {count: 0};
+
+let countReducer = (state, action) => {
+	switch(action.type) {
+		case "INCREMENT" : return { count : state.count + action.payload };
+		case "DECREMENT" : return {count : state.count - 1};
+		default : state
+	}
+}
+
+
+function App() {
+	let [state, dispatch] = React.useReducer(countReducer, initialState);
+
+	function increment() {
+		let action = {"type": "INCREMENT", payload: 10};
+		dispatch(action);
+
+	}
+	return (
+		<div>
+			Count {state.count} <br />
+			<button onClick={increment}>Click</button>
+		</div>
+	)
+}
+
+
+ReactDOM.render(<App/>, document.getElementById("root"));
+
+====
+
+
+3) useContext()
+
+alternate to Consumer of Context
+
+let ProductContext = React.createContext();
+
+
+let ProductConsumer = React.useContext(ProductContext);
+
+ProductConsumer.value; ...
+
+
+export default Cart = function() {
+    let Context = React.useContext(ProductContext);
+    let {cart} = Context;
+    return (
+                      <div className="container">
+                       {
+                          cart.map(p => <CartList product={p} key={p.id} />)       
+                        }
+                     </div>
+                  )
+
+}
+
+===
+
+let ProductContext = React.useContext(ProductContext);
+let CustomerContext = React.useContext(CustomerContext);
+
+return (
+	<h1> {ProductContext.total}  { CustomerContext.userName } </h1>
+)
+
+==============================
+
+Try using React.useContext() in Details.js
+
+==========================================
+
+
+4) useEffect
+
+ can be used in place of life cycle methods of classcomponents like componentDidMount and componentDidUpdate
+
+
+
+function App() {
+	let [count, setCount] = React.useState(0);
+	let [user, setUser] = React.useState("");
+
+	React.useEffect(() => {
+		console.log("Called effect 1, like componentDidMount ");
+	}, []);
+
+	React.useEffect(() => {
+		console.log("Called effect 2, like componentDidUpdate ");
+	});
+
+	React.useEffect(() => {
+		console.log("Called  effect 3 like componentDidUpdate but only if count changes");
+	}, [count]);
+
+	return (
+		<div>
+			Count {count} User {user} <br />
+			<button onClick={() => setCount(count + 1)}>Click</button>
+		</div>
+	)
+}
+ReactDOM.render(<App/>, document.getElementById("root"));
+
+=======
+
+
+
+
+
+
+
+
+
 
 
