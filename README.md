@@ -1573,4 +1573,153 @@ function Child(props) {
 
 const MemoChild = React.memo(Child, checkProps);
 
-=======================================
+==============================================
+
+React.memo() is a High Order Component
+
+HOC ==> components which accept a component / return a component ==> like HOF
+Why HOC?
+	1) can introduce new props and behavior to component
+	2) Conditionally render components / return components
+
+
+const withCounter = (WrappedComponent) => {
+  return class   extends React.Component {
+  	state = {
+  		count : 0
+  	}
+  	increment() {
+  		this.setState({
+  			count : this.state.count + 1
+  		})
+  	}
+    render() {
+      return <WrappedComponent count={this.state.count} increment = {this.increment.bind(this)}/>
+    }
+  }
+  
+}
+
+class DivComponent extends React.Component {
+	render(){ 
+		return <div>
+			Count : {this.props.count} <br />
+			<button onClick={() => this.props.increment()} > click </button>
+		</div>
+	}
+}
+
+const DivWithCounter = React.memo(withCounter(DivComponent));
+
+
+==================================
+
+
+ErrorBoundary
+
+React 16 introduces a new concept of an “error boundary”
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+     return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+     console.log(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
+}
+
+
+function App() {
+	return <>
+		<ErrorBoundary>
+			<A/>
+			<B/>
+		</ErrorBoundary>
+		<ErrorBoundary>
+			<D/>
+			<C/>
+			<E/>:
+		</ErrorBoundary>
+	</>
+}
+
+========================
+
+
+Refs and the DOM:
+
+Refs provide a way to access DOM nodes or React elements created in the render method.
+
+Refs are created using React.createRef() and attached to React elements via the ref attribute
+
+class App extends React.Component {
+	state = {
+		text: ""
+	}
+	render() {
+		return <>
+			<input type="text" onChange={(e) => this.setData(e.target.value)} />
+			<button onClick={() => this.doTask()}>Click</button>
+
+		</>
+	}
+	setData(txt) {
+		this.setState( {
+			text: txt
+		})
+	}
+	doTask() {
+		// access data entered in text box
+		this.state.text;
+
+	}
+}
+
+======
+	
+	<input type="text" id="email" />
+
+	document.getElementById("email").value
+
+==
+
+class App extends React.Component {
+	emailRef = React.createRef(); // pointer
+	render() {
+		return <>
+			<input type="text" ref={this.emailRef} />
+			<button onClick={() => this.doTask()}>Click</button>
+
+		</>
+	}
+	 
+	doTask() {
+		 console.log(this.emailRef.current.value);
+		 this.emailRef.current.focus();
+	}
+}
+
+ReactDOM.render(<App/>, document.getElementById("root"));
+
+=================
+
+React Hooks
+
+Resume @ 3: 50
+
+
