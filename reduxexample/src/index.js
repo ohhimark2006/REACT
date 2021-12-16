@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import {createStore, compose} from 'redux';
 
 import ContactReducer from './redux/ContactReducer';
-
+ 
 const store = createStore(ContactReducer, compose(window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 ReactDOM.render(

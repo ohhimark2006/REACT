@@ -35,7 +35,7 @@ class App extends Component {
       {
         <ul>
           {
-          this.props.contacts.map((contact, i) => <ContactView 
+           this.props.contacts.map((contact, i) => <ContactView 
               contact={contact} index= {i} 
               deleteContact={(e,index) => this.delete(e,index)} />
             )
@@ -50,7 +50,7 @@ class App extends Component {
 // return value is given as props to react compoenent
 const mapStateToProps = (state) => {
   return {
-    contacts : state.contacts
+    contacts : state
   }
 } 
 // dispatch is a way to invoke reducer functions

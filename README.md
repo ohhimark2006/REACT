@@ -2008,6 +2008,27 @@ reduxexample> npm i redux react-redux
 
 ============
 
+State Management:
+redux
+mobx
+flux
+observable
+
+=====================
+
+Redux middlewares ==> Thunk and Redux Saga
+
+https://redux.js.org/tutorials/essentials/part-5-async-logic
+
+
+npx create-react-app reduxmiddleware
+
+reduxmiddleware> npm i redux react-redux redux-thunk axios
+
+
+
+
+
  
 
 
