@@ -2040,8 +2040,55 @@ React Redux Hooks:
 
 
 
+===============
 
+
+Redux Saga ==> Middleware instead of Thunk
+
+Saga is based on ES 6  generators
+
+function* doTask() {
+	console.log("one");
+	console.log("two");
+
+	yield "result 1";
+
+	console.log("third");
+	console.log("fourth");
+	console.log("fifth");
+
+	yield "result 2";
+
+	console.log("1");
+	console.log("s");
+	console.log("s");
+
+	yield "result 3";
+}
+
+let iter = doTask();
+
+iter.next(); // {value: "result 1", done: false}
+
+...
+
+iter.next();  // {value: "result 2", done: false}
+
+...
+
+iter.next(); // {value: "result 3", done: false}
+
+
+
+
+
+
+Redux Saga:
+Sagas enable numerous approaches to tackling parallel execution, task concurrency, task racing, task cancellation, and more. Keep total control over the flow of your code.
  
+========
+
+
 
 
 
