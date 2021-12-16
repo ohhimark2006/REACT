@@ -1963,6 +1963,62 @@ function ParentComponent() {
 
 ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
 
+===========================================
+
+npx create-react-app sampletsreact --template typescript
+
+================================================================
+
+State management in React
+
+Redux: A Predictable State Container for JS Apps [ Angular , Backbone, React, jQuery, Vue , ...]
+
+React is good at view management 
+React.createContext() ==> state management == but for smaller data
+
+1) Action
+	{
+		type:
+		payload:
+	}
+
+2) Action Creators
+	create action objects
+
+3) Store => Redux has a single store [ state is managed here]
+
+4) Reducers
+	are functions which are invoked by dispatch(action)
+	Reducer gets state from store,
+	action from view
+	based on type of action; it mutates and returns the new state which is updated in store
+
+	RootReducer ==> combine many reducer
+
+5) view layer binding with redux [ connect()]
+
+
+====
+
+Redux example:
+
+npx create-react-app reduxexample
+
+reduxexample> npm i redux react-redux
+
+============
+
+ 
+
+
+
+
+
+
+
+
+
+
 
 
 
