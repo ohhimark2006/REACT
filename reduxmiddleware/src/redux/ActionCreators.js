@@ -1,4 +1,4 @@
-import {FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, } from './Action';
+import {FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE} from './Action';
 
 export const fetchUsersRequest = () => {
     return {

@@ -2026,14 +2026,22 @@ npx create-react-app reduxmiddleware
 reduxmiddleware> npm i redux react-redux redux-thunk axios
 
 
+==> using react-redux hooks instead of connect()
+
+========================
+
+
+
+
+React Redux Hooks:
+1) useSelector() : This approximately equivalent to the mapStateToProps argument to connect conceptually.
+ 
+2) useDispatch() : This is equivalent to mapDispatchToProps
+
 
 
 
  
-
-
-
-
 
 
 
