@@ -1891,6 +1891,77 @@ ReactDOM.render(<App/>, document.getElementById("root"));
 =======
 
 
+Day 4:
+
+
+Day 3 Recap:
+1) Context, React-router-dom, Suspense and Lazy loading, Component Life cycle
+2) axios for REST api calls
+3) shouldComponentUpdate(), React.memo() and PureComponent
+4) React.createRef() to access DOM and react element
+5) React Hooks ==> use hooks in functional components to get what a class component can acheive
+	5.1) useState()
+	5.2) useReducer() ==> action; state and dispatch(action)
+	5.3) useContext()
+	5.4) useEffect() ==> componentDidMount(), componentDidUpdate()
+	5.5) useMemo() ==> same as memoization pattern; memoize the return value of function
+	5.6) useCallback() ==>
+		 will return a memoized version of the callback that only changes if one of the dependencies has changed
+
+
+function Title() {
+  console.log('Rendering Title')
+  return (
+    <h2>
+      Example: Title
+    </h2>
+  )
+};
+
+
+function Button({ handleClick, children }) {
+  console.log('Rendering button - ', children)
+  return (
+    <button onClick={handleClick}>
+      {children}
+    </button>
+  )
+}
+
+function Count({ text, count }) {
+	console.log(`Rendering ${text}`)
+	return <div>{text} - {count}</div>
+}
+
+
+const MemoTitle = React.memo(Title);
+const MemoCount = React.memo(Count);
+const MemoButton = React.memo(Button);
+
+function ParentComponent() {
+	const [age, setAge] = React.useState(25)
+	const [salary, setSalary] = React.useState(50000)
+
+	 const incrementAge = React.useCallback(() => {
+		setAge(age + 1)
+	}, [age]);
+
+	const incrementSalary = React.useCallback(() => {
+   		setSalary(salary + 1000)
+	}, [salary]);
+  
+	return (
+		<div>
+			<MemoTitle />
+			<MemoCount text="Age" count={age} />
+			<MemoButton handleClick={incrementAge}>Increment Age</MemoButton>
+			<MemoCount text="Salary" count={salary} />
+			<MemoButton handleClick={incrementSalary}>Increment Salary</MemoButton>
+		</div>
+	)
+}
+
+ReactDOM.render(<ParentComponent/>, document.getElementById("root"));
 
 
 
